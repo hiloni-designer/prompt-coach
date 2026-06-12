@@ -1,0 +1,15 @@
+{
+  "name": "prompt-coach-tokenizer-build",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Build step that bundles js-tiktoken into a classic-script global for the extension.",
+  "scripts": {
+    "build": "esbuild entry.js --bundle --format=iife --global-name=__pcbundle --outfile=../tokens.js --minify"
+  },
+  "dependencies": {
+    "js-tiktoken": "1.0.21"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.0"
+  }
+}

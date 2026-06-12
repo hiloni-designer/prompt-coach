@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Coach settings</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>✦ Prompt Coach</h1>
+    <p class="sub">Rewrites your prompt before you send it. Bring your own API key — it's stored locally in your browser and never sent anywhere except your chosen provider.</p>
+
+    <label for="provider">Provider</label>
+    <select id="provider">
+      <option value="openai">OpenAI</option>
+      <option value="anthropic">Anthropic (Claude)</option>
+      <option value="ollama">Ollama (local, free, no key)</option>
+    </select>
+
+    <label for="model">Model <span class="hint">(optional)</span></label>
+    <input id="model" type="text" placeholder="gpt-4o-mini / claude-3-5-haiku-latest / llama3.1" />
+
+    <div id="key-field">
+      <label for="apiKey">API key</label>
+      <input id="apiKey" type="password" placeholder="sk-..." />
+    </div>
+
+    <div id="ollama-field" hidden>
+      <label for="ollamaUrl">Ollama URL</label>
+      <input id="ollamaUrl" type="text" placeholder="http://localhost:11434" />
+      <p class="hint ollama-help">Run <code>ollama serve</code> and <code>ollama pull llama3.1</code> first. Origin/CORS is handled automatically — no extra setup.</p>
+    </div>
+
+    <label class="check-row">
+      <input id="fastMode" type="checkbox" />
+      <span>Fast mode (shorter explanations, ~2× faster)</span>
+    </label>
+
+    <label class="check-row">
+      <input id="useHistory" type="checkbox" />
+      <span>Use recent chat history for context</span>
+    </label>
+    <p class="hint">When on, Coach reads the last few messages on the page to understand intent (e.g. resolve "like before"). History is reference-only — never copied into your prompt. Adds tokens to the Coach call.</p>
+
+    <div class="btn-row">
+      <button id="save">Save</button>
+      <button id="test" class="secondary">Test connection</button>
+    </div>
+    <div id="status" class="status"></div>
+
+    <p class="foot">On ChatGPT, Claude, or Gemini, type a prompt and click the floating <strong>✦ Coach</strong> button.</p>
+    <script src="popup.js"></script>
+  </body>
+</html>
